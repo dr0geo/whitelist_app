@@ -116,22 +116,22 @@ const Home: NextPage = () => {
     if (walletConnected) {
       if (whitelistedAddresses) {
         return (
-          <div className="m-auto">
+          <button className="my-8 p-4 bg-green-500 text-white rounded-md" disabled>
             Thanks for joining the Whitelist!
-          </div>
+          </button>
         );
       } else if (isLoading) {
-        return <button className="m-auto">Loading...</button>;
+        return <button className="my-8 p-4 bg-gray-400 text-gray-700 rounded-md" disabled>Loading...</button>;
       } else {
         return (
-          <button onClick={addAddressToWhitelist} className="m-auto">
+          <button onClick={addAddressToWhitelist} className="my-8 p-4 bg-vblue text-white rounded-md">
             Join the Whitelist
           </button>
         );
       }
     } else {
       return (
-        <button onClick={connectWallet} className="m-auto p-2">
+        <button onClick={connectWallet} className="my-8 p-4 bg-vblue text-white rounded-md">
           Connect your wallet
         </button>
       );
@@ -145,25 +145,27 @@ const Home: NextPage = () => {
         <meta name="description" content="Whitelist-Dapp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="m-auto">
-        <div>
-          <h1 className="m-auto">Welcome to Crypto Devs!</h1>
-          <div className="m-auto">
-            Its an NFT collection for developers in Crypto.
+      <div className="h-screen flex flex-col justify-evenly">
+        <section className="flex justify-around items-center">
+          <div>
+            <h1 className="mb-8 text-center text-3xl text-vblue">Welcome to Crypto Devs!</h1>
+            <p className="py-2">
+              Its an NFT collection for developers in Crypto.
+            </p>
+            <p className="py-2">
+              {whitelistedAddresses} {whitelistedAddresses > 1 ? 'users have' : 'user has'} already joined the Whitelist.
+            </p>
+            {renderButton()}
           </div>
-          <div className="m-auto">
-            {whitelistedAddresses} have already joined the Whitelist
+          <div>
+            <img src="./crypto-devs.svg" />
           </div>
-          {renderButton()}
-        </div>
-        <div>
-          <img className="m-auto" src="./crypto-devs.svg" />
-        </div>
-      </div>
+        </section>
 
-      <footer className="m-auto">
-        Made with &#10084; by Crypto Devs
-      </footer>
+        <footer className="flex justify-center text-vblue italic">
+          Made with &#10084; by Crypto Devs
+        </footer>
+      </div>
     </div>
   );
 }
